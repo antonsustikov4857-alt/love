@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Важный вопрос</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        h1 { color: #ff4d4d; font-size: 3em; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .buttons { display: flex; gap: 20px; margin-top: 30px; }
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: #ff4d4d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+        }
+        #no {
+            background-color: #cccccc;
+            color: #333;
+            position: absolute; /* Чтобы кнопка могла убегать */
+        }
+    </style>
+</head>
+<body>
+    <!-- Текст вопроса изменен здесь -->
+    <h1>Ты меня любишь?</h1>
+    
+    <div class="buttons">
+        <!-- Текст при нажатии на "Да" тоже обновлен -->
+        <button id="yes" onclick="alert('Я так и знал! Я тебя тоже очень сильно люблю! ❤️')">ДА!</button>
+        <button id="no">Нет</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no');
+        const yesBtn = document.getElementById('yes');
+
+        // Когда мышка приближается к "Нет", кнопка убегает
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+            
+            // А кнопка "Да" становится больше
+            let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = `${currentSize + 2}px`;
+        });
+    </script>
+</body>
+</html>
